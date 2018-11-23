@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hzp.mobilesafe.R;
@@ -26,6 +27,8 @@ public class HomeActivity extends Activity {
     private String[] mTitleStrs;
     private int[] mDrawableIds;
     private GridView gv_home;
+    private EditText et_set_psd;
+    private EditText et_confirm_psd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,15 +149,17 @@ public class HomeActivity extends Activity {
         final View view=View.inflate( this,R.layout.dialog_set_psd,null );
         //让对话框显示一个自己定义的对话框界面效果
         dialog.setView(view);
+        dialog.getWindow().setLayout( LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         dialog.show();
+        et_set_psd = (EditText) view.findViewById( R.id.et_set_psd);
+        et_confirm_psd = (EditText)view.findViewById( R.id.et_confirm_psd);
 
         Button bt_submit = (Button) view.findViewById(R.id.bt_submit);
         Button bt_cancel = (Button) view.findViewById(R.id.bt_cancel);
         bt_submit.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText et_set_psd = (EditText) view.findViewById(R.id.et_set_psd);
-                EditText et_confirm_psd = (EditText)view.findViewById(R.id.et_confirm_psd);
+
 
                 String psd = et_set_psd.getText().toString();
                 String confirmPsd = et_confirm_psd.getText().toString();
